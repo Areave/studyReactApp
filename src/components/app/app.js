@@ -11,9 +11,10 @@ import CharacterPage from '../characterPage/characterPage';
 
 export default class App extends React.Component {
 
+    gotService = new gotService();
 
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         console.log("App update", this.state.selectedID)
     }
 
@@ -30,7 +31,19 @@ export default class App extends React.Component {
                             <RandomChar />
                         </Col>
                     </Row>
-                    <CharacterPage />
+
+                    <CharacterPage 
+                    getData = {this.gotService.getAllCharacters}
+                    renderItem={({name, gender})=>(name + ", " + gender)}
+                    />
+                    <CharacterPage 
+                    getData = {this.gotService.getAllBooks}
+                    renderItem={({name, numberOfPages})=>(<> <span>{name + ', ' + numberOfPages}</span><button>Click me</button></>)}
+                    />
+                    <CharacterPage 
+                    getData = {this.gotService.getAllHouses}
+                    renderItem={({name, region})=>(name + ', ' + region)}
+                    />   
 
                 </Container>
             </>

@@ -6,14 +6,16 @@ import Spinner from '../spinner/spinner';
 export default class ItemList extends Component {
 
     state = {
-        charList: null
+        itemList: null
     }
 
-    service = new GOTService();
+    gotService = new GOTService();
 
     componentDidMount() {
-        const charAr = this.service.getAllCharacters();
-        charAr.then(charList => this.setState({ charList }));
+        let  {getData} = this.props;
+        const itemAr = getData();
+
+        itemAr.then(itemList => this.setState({ itemList }));
     }
 
     componentDidUpdate() {
@@ -26,9 +28,9 @@ export default class ItemList extends Component {
                     <li 
                     key={index} 
                     className="list-group-item"
-                    onClick={()=>this.props.onCharSelected(index)}
+                    onClick={()=>this.props.onItemSelected(index)}
                     >
-                        {item.name}
+                        {this.props.renderItem(item)}
                     </li>
                 </>
             )
@@ -39,12 +41,12 @@ export default class ItemList extends Component {
     }
 
     render() {
-        const { charList } = this.state;
+        const { itemList } = this.state;
 
-        if (!charList) {
+        if (!itemList) {
             return <Spinner />
         }
-        const items = this.renderList(charList);
+        const items = this.renderList(itemList);
         return (
             <ul className="item-list list-group">
                 {items}

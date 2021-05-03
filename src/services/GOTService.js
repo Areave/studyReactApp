@@ -7,7 +7,7 @@ export default class GOTService {
 
     // main fetch method
 
-    async getResourse(url) {
+    getResourse = async (url) => {
         const resourse = await fetch(url)
             .then(res => {
                 if (res.ok) {
@@ -24,12 +24,12 @@ export default class GOTService {
 
     // chars
 
-    async getAllCharacters() {
+    getAllCharacters = async () => {
         return await this.getResourse(this.charsURL + '?page=2&pageSize=10')
         .then(ar=> ar.map(this.transformChar));
     };
 
-    async getCharacterById(id) {
+    getCharacterById = async (id) => {
         return this.transformChar(await this.getResourse(this.charsURL + `/${id}`));
     }
 
@@ -53,15 +53,16 @@ export default class GOTService {
 
     // houses----------------------------------------
 
-    getAllHouses() {
-        return this.transformData(this.getResourse(this.housesURL));
+    getAllHouses = async () => {
+        return await this.getResourse(this.housesURL)
+        .then(ar=> ar.map(this.transformHouse));
     }
 
-    getHouseById(id) {
-        return this.getResourse(this.housesURL + `/${id}`);
+    getHouseById = async (id) => {
+        return await this.getResourse(this.housesURL + `/${id}`);
     }
 
-    transformHouse(obj) {
+    transformHouse = (obj) => {
         return {
             name: obj.name,
             region: obj.region,
@@ -75,15 +76,16 @@ export default class GOTService {
 
     // books-------------------------------------------
 
-    getAllBooks() {
-        return this.getResourse(this.booksURL);
+    getAllBooks = async () => {
+        return await this.getResourse(this.booksURL)
+        .then(ar=> ar.map(this.transformBook));
     }
 
-    getBookById(id) {
-        return this.getResourse(this.booksURL + `/${id}`);
+    getBookById = async (id) => {
+        return await this.getResourse(this.booksURL + `/${id}`);
     }
 
-    transformBook(obj) {
+    transformBook = (obj) => {
         return {
             name: obj.name,
             numberOfPages: obj.numberOfPages,
