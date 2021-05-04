@@ -1,11 +1,12 @@
 
 
-const Field = ({item, field, label}) => {
+const Field = ({field, label}) => {
+
     return (
         <>
             <li className="list-group-item d-flex justify-content-between">
                 <span className="term">{label}</span>
-                <span>{item[field]}</span>
+                <span>{field}</span>
             </li>
         </>
     )

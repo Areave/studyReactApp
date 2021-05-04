@@ -4,7 +4,7 @@ import TemplatePage from '../templatePage/templatePage';
 
 
 
-export default class CharacterPage extends Component {
+export default class HousesPage extends Component {
 
     gotService = new GOTService();
 
@@ -12,8 +12,8 @@ export default class CharacterPage extends Component {
 
         console.log('return from charpage')
         return <TemplatePage
-            getData={this.gotService.getAllCharacters}
-            renderItem={({ name, gender }) => (name + ", " + gender)}
+        getData={this.gotService.getAllHouses}
+                                renderItem={({ name, region }) => (name + ', ' + region)}
         />
     }
 

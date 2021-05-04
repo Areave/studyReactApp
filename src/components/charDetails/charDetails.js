@@ -25,7 +25,7 @@ export default class CharDetails extends Component {
     updateChar(id) {
         if (!id) { return };
 
-        this.props.setData()
+        this.props.getData()
             .then(arr => arr[id])
             .then(selectedChar => {
                 this.setState({ selectedChar })
@@ -48,19 +48,23 @@ export default class CharDetails extends Component {
             )
         }
 
-        const { name } = this.state.selectedChar;
-        
 
-        // const keys = Object.keys(this.state.selectedChar);
-        // const fields = keys.map((item, index) => (
-        //     <Field item={keys} field={index} label={item} />
-        // ))
+        const char = this.state.selectedChar;
+        const { name } = char;
+       
+
+        const fieldAr = [];
+
+        for(let key in char ) {
+            fieldAr.push(<Field key={char[key]} field={char[key]} label={key}/>);
+        }
 
         return (
             <div className="char-details rounded">
                 <h4>{name}</h4>
                 <ul className="list-group list-group-flush">
-                    {selectedChar}
+                    {fieldAr}
+                    {/* {React.Children.map(this.props.children, (child) => React.cloneElement(child, {char}))} */}
                 </ul>
             </div>
         );
