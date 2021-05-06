@@ -38,21 +38,18 @@ export default class App extends React.Component {
                             <Route exact path="/chars/" component={CharacterPage} />
                             <Route exact path="/books/" component={BookPage} />
                             <Route exact path="/houses/" component={HousesPage} />
-                            <Route exact path="/books/:id" render={
-                                ({match}) => {
-                                    const {id} = match.params;
-                                console.log(match )
-                                return <LinkItem bookId={id}/>}
-                            } />
+                            <Route exact path="/*/:id" render={
+                                ({ match, history, location }) => {
 
-                            {/* <CharacterPage
-                                getData={this.gotService.getAllBooks}
-                                renderItem={({ name, numberOfPages }) => (<> <span>{name + ', ' + numberOfPages}</span><button>Click me</button></>)}
-                            />
-                            <CharacterPage
-                                getData={this.gotService.getAllHouses}
-                                renderItem={({ name, region }) => (name + ', ' + region)}
-                            /> */}
+                                    const { id } = match.params;
+                                    const page = match.params[0];
+
+                                    return <LinkItem
+                                        itemId={id}
+                                        page={page}
+                                    />
+                                }
+                            } />
 
                         </Container>
                     </div>

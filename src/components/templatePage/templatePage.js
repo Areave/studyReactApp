@@ -20,14 +20,12 @@ class TemplatePage extends Component {
     gotService = new GOTService();
 
     componentDidCatch() {
-        console.log('error!');
         this.setState({ error: true });
 
 
     }
 
     onItemSelected = (i) => {
-        console.log('selected', i);
         this.setState({ selectedID: i });
     }
 
@@ -35,8 +33,6 @@ class TemplatePage extends Component {
 
 
     render() {
-
-        console.log('render from templatepage')
 
         const itemList = (
             <Col md='6'>
@@ -60,8 +56,6 @@ class TemplatePage extends Component {
         );
 
         if (this.state.error) return <Spinner />;
-
-        console.log(charDetails)
 
         return <RowBlock left={itemList} right={charDetails} />
 
