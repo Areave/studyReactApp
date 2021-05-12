@@ -11,7 +11,7 @@ export default class BookPage extends Component {
     render() {
         return <TemplatePage
         getData={this.gotService.getAllBooks}
-        renderItem={({ name, numberOfPages }) => (<> <span>{name + ', ' + numberOfPages}</span><button>Click me</button></>)}
+        renderItem={({ name, numberOfPages }) => (<> <span>{name + ', ' + numberOfPages}</span></>)}
         />
     }
 
