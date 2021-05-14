@@ -2,6 +2,7 @@
 
 Учебное приложение для практики работы с библиотекой Реакт.
 
+![](https://github.com/Areave/studyReactApp/blob/master/public/screen.png)
 ## Что делает
 
 - При зарузке получает данные в формате JSON с [GOT API](https://anapioficeandfire.com) 
